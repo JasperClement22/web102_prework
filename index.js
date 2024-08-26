@@ -130,15 +130,40 @@ function showAllGames() {
     addGamesToPage(GAMES_JSON)
 }
 
+
+
 // select each button in the "Our Games" section
 const unfundedBtn = document.getElementById("unfunded-btn");
 const fundedBtn = document.getElementById("funded-btn");
 const allBtn = document.getElementById("all-btn");
+const gameTxt = document.getElementById("gameName");
+
+// show search game
+function showSearchedGame(){
+    deleteChildElements(gamesContainer);
+
+    //use filter() to find searched game
+    let searchedGame = GAMES_JSON.filter((game) => {
+        return game.name.toLowerCase() == gameTxt.value.toLowerCase();
+    });
+
+    if (searchedGame.length > 0) {
+        addGamesToPage(searchedGame);
+    } else {
+        gamesContainer.innerHTML = "<p>No game found</p>";
+    }
+}
 
 // add event listeners with the correct functions to each button
 unfundedBtn.addEventListener("click", filterUnfundedOnly);
 fundedBtn.addEventListener("click", filterFundedOnly);
 allBtn.addEventListener("click", showAllGames);
+gameTxt.addEventListener('keydown', function(event) {
+    if(event.key === 'Enter'){
+            event.preventDefault(); //Keeps the page from refreshing so it displays the search
+            showSearchedGame(); 
+    }
+});
 
 /*************************************************************************************
  * Challenge 6: Add more information at the top of the page about the company.
