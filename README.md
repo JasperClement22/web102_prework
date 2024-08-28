@@ -35,7 +35,7 @@ GIF created with LiceCap
 
 ## Notes
 
-Getting the games to show up in the correct order when I click show all games.
+Getting the games to show up in the correct order when I click show all games. I fixed this by making a copy of GAMES_JSON instead of just sorting the original.
 
 
 ## License
